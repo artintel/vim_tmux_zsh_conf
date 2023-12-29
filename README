@@ -1,0 +1,227 @@
+# vim
+# vim practise game:
+# apt install pacvim
+# man pacvim
+运行shell脚本提示`\r`等命令不可用
+原因是在 `windows`下编辑`shell`脚本会有这个问题
+使用编辑器 `vi/vim` 打开执行脚本
+输入：`set fileformat=unix`回车
+保存退出
+
+### vim 内函数跳转
+apt install ctags
+apt install exuberant-ctags
+————————————————
+装好ctags后，找一个 源码目录，在终端上运行如下命令，会生成一个tags文件。
+// 如果配置好了 YCM， 用YCM更好。
+`ctags -R`
+`:set tags=/Your/Path/To/tags`/
+[常用跳转方法：光标处Ctrl-]键：跳到光标所在单词的tag。Ctrl-T键：跳回原来的位置。g]键（先按g再按]）：如果有同名的多个tag，可以用这两个键进行跳转，会提示选择序号。]
+[系统函数挑战] shift+K
+[Tlist] 打开该文件下的函数列表，需要安装Plug
+
+### ctags 配合 YouCompleteMe
+在你的 .vimrc 或 init.vim 文件中添加 YouCompleteMe 插件：
+
+Plug 'ycm-core/YouCompleteMe'
+然后在 Vim 中运行 :PlugInstall 来安装插件。
+
+4. 安装 YouCompleteMe 的依赖项
+YouCompleteMe 需要编译，因此你需要确保你的系统上安装了 CMake 和 Python。对于某些语言的支持，你可能还需要安装额外的依赖项，如 Go、Node.js、Java 等。
+
+5. 编译 YouCompleteMe
+在安装插件后，你需要编译 YCM。这通常涉及到编译 YCM 的核心以及它的语言补全引擎。在你的 Vim 插件目录中找到 YouCompleteMe 文件夹（例如 ~/.vim/plugged/YouCompleteMe），然后运行 install.py 脚本：
+
+
+cd ~/.vim/plugged/YouCompleteMe
+python3 ./install.py
+--all 标志会安装所有语言的补全引擎。你可以根据需要选择性地安装特定语言的支持，例如：
+https://blog.csdn.net/liao20081228/article/details/80347889
+https://clangd.llvm.org/installation.html#project-setup
+// vim插件ycm安装完成启动时出现The ycmd server SHUT DOWN (restart with ‘:YcmRestartServer‘)
+python3 ./install.py --force-sudo --clangd-completer # if use root
+cp ycm_extra_conf.py ~/.vim/.ycm_extra_conf.py # if use my repo
+## ~/.vimrc
+https://zhuanlan.zhihu.com/p/145793963
+https://www.freecodecamp.org/news/vimrc-configuration-guide-customize-your-vim-editor/
+.vim/
+ ├── autoload/
+ ├── backup/
+ ├── colors/
+ └── plugged/
+
+mkdir -p ~/.vim ~/.vim/autoload ~/.vim/backup ~/.vim/colors ~/.vim/plugged
+touch ~/.vimrc
+如果下面 curl 无法通：
+1. 使用vim /etc/hosts命令打开不能访问的机器的hosts文件，添加如下内容：
+	199.232.68.133 raw.githubusercontent.com
+	199.232.68.133 user-images.githubusercontent.com
+	199.232.68.133 avatars2.githubusercontent.com
+	199.232.68.133 avatars1.githubusercontent.com
+
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim # 为后续的插件做准备
+
+cd ~/.vim/plugged
+git clone https://github.com/preservim/nerdtree.git
+
+$ cd ~/.vim/colors
+$ curl -o molokai.vim https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
+```s
+
+最后执行：
+:wq
+:source ~/.vimrc
+:PlugInstall
+```
+
+## 多行同时插入
+1. `ctrl + v`
+2. 上下移动
+3. 按下大写 `I`
+4. 正常编辑
+5. 按两次 `esc`
+## 分屏
+1. `c+w s` 上下分屏
+2. `c+w v` 左右分屏
+## vim 目录的一些操作
+可配合 vimgrep
+```c
+:cd .. 将当前目录切换到当前所在的上级目录
+:cd %:h 将当前目录变成当前文件所在的目录
+:cd 或 cd ~ 将当前目录更改为您的主目录
+:cd - 将当前目录更改为您访问的上一个目录
+```
+## vim 分屏
+`c+w s` 上下
+`c+w v` 左右
+最大化当前窗口:
+
+`Ctrl-W |`：将当前窗口的宽度最大化。
+`Ctrl-W _`：将当前窗口的高度最大化。
+恢复窗口大小:
+`Ctrl-W =`：使所有窗口的大小相等。
+关闭其他窗口:
+
+`:only 或 Ctrl-W o`：关闭除当前窗口外的所有窗口，这样当前窗口就会变成全屏。再次分屏后，可以使用相同的命令返回到一个窗口。
+调整窗口大小:
+
+## vim 调整窗口大小
+`c+w +` 扩大窗口
+`c+w -` 缩小窗口
+`:res[ize] +N` 扩大N，默认1
+`:res[ize] -N` 缩小N, 默认1
+`:res[ize] N`  设定为N
+## 缩进
+:set autoindent - 开启自动缩进，新行的缩进将与上一行相同。
+:set smartindent - 开启智能缩进，适用于 C 类语言，会根据语法自动调整缩进。
+:set cindent - 开启 C 语言风格的缩进，更加智能和可配置。
+## vim/vimgrep 查找文件
+1. 使用vim内置搜索引擎 vimgrep I
+
+    格式：:vim /patern/gj **
+
+    命令：:vim 或者 :vimgrep
+
+    模式： 查询模式包含在 / / 之间
+
+    参数： g 表示将同一行搜到的关键字分多行进行显示
+
+          j 表示搜索完成后无需跳转到第一个搜索到的位置
+
+    查询：  默认从工作目录查询
+
+          ** 表示指定目录下及其子目录的所有文件
+
+          * 表示指定目录下的任意文件
+
+    查看搜索结果：
+
+          :copen 打开quickfix窗口进行查看所有结果
+
+          :ccl 或者 :q 关闭quickfix窗口
+
+  1. vim help 的描述
+      :vimgrep /an error/ *.c
+      :vimgrep /\<FileName\>/ *.h include/*
+      :vimgrep /myfunc/ **/*.c
+  2. :grep
+   a. `:grep /block/ *.*` 在当前目录下查找所有文件
+   b. `:grep -i word filename` 默认情况下，grep是 区分大小写的，可以使用-i选项来忽略大小写：
+   c. `:grep -o [[:punct:]] filename` 使用-o选项，将只显示匹配的字符，而不是整行内容：
+   d. `:copen` 打开 quickfix 窗口查看所有结果 
+## set nu / set nonu
+## 翻页
+在 Vim 中，你可以使用多种命令来翻页。以下是一些常用的翻页命令：
+
+Ctrl + f - 向前翻一页（向下翻）。
+Ctrl + b - 向后翻一页（向上翻）。
+Ctrl + d - 向前翻半页。
+Ctrl + u - 向后翻半页。
+这些命令在普通模式（Normal mode）下使用。它们允许你快速浏览文档，而不必逐行滚动。
+
+此外，还有一些其他相关的翻页命令：
+
+Ctrl + e - 向下滚动一行。
+Ctrl + y - 向上滚动一行。
+zz - 将当前行移动到窗口中央。
+zt - 将当前行移动到窗口顶部。
+zb - 将当前行移动到窗口底部。
+记住，这些命令都是在 Vim 的普通模式下使用的。如果你在插入模式或命令行模式，需要先按 Esc 键返回到普通模式。
+
+## 文本替换
+``` shell
+  1. 请将光标移动到本节中下面标记有 ---> 的那一行。
+
+  2. 输入 :s/thee/the <回车> 。请注意该命令只改变光标所在行的第一个匹配串。
+
+  3. 输入 :s/thee/the/g	则是替换全行的匹配串，该行中所有的 "thee" 都会被改变。
+
+	---> thee best time to see thee flowers is in thee spring.
+
+  4. 输入 :#,#s/old/new/g 是替换两行之间出现的每个匹配串
+	 其中 #,# 代表的是替换操作的若干行中首尾两行的行号。
+  5. 替换整个文件的每个匹配串 
+     输入   :%s/old/new/g     则是替换整个文件中的每个匹配串。
+
+     输入   :%s/old/new/gc    会找到整个文件中的每个匹配串，并且对每个匹配串提示是否进行替换。
+```
+## 复制整行并粘贴
+在光标的位置按`yy`，复制当前行；
+然后再光标的行按`p`, 粘贴到下一行，原来的往下顺移。
+## a 和 i 
+`i` 是插入命令，是在光标前开始插入
+`a` 也可以是插入命令，是在光标后面插入
+
+## 删除单词
+光标移动到要删除单词的起始位置
+按 `dw` 即可
+## 删除一行中从某个位置到最后
+光标移动到要删除这个位置的起始
+按下 `d$`
+```
+  1. 请按下 <ESC> 键确保您处于正常模式。
+
+  2. 请将光标移动到本节中下面标记有 ---> 的那一行。
+
+  3. 请将光标移动到该行的尾部(也就是在第一个点号‘.’后面)。
+
+  4. 然后输入 d$ 从光标处删至当前行尾部。
+
+```
+## vim 折叠，函数块折叠
+在 Vim 中，你可以使用代码折叠功能来折叠或者展开代码块。以下是一些基本的操作：
+
+zf：创建一个折叠。你可以在可视模式下选择一段代码，然后按 zf 来折叠它。或者在普通模式下，你可以使用 zf 加行数来折叠多行，例如 zf5j 会折叠当前行开始的接下来5行。
+
+zo：打开一个折叠。将光标移动到折叠的代码上，然后按 zo。
+
+zc：关闭一个折叠。将光标移动到已经打开的折叠代码上，然后按 zc。
+
+za：切换一个折叠的状态。如果当前的代码是打开的，那么 za 会折叠它；如果代码是折叠的，那么 za 会打开它。
+
+zR：打开所有的折叠。
+
+zM：关闭所有的折叠。
+
+在你的情况下，你可以将光标移动到 if () {} 代码块的开始，然后按 zf% 来折叠整个代码块。% 是一个特殊的命令，它会移动到配对的括号或者大括号上。所以 zf% 的意思是从当前的位置到配对的括号创建一个折叠。
