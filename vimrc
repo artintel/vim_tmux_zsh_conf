@@ -21,6 +21,8 @@ set completeopt-=preview
 let Tlish_Show_One_File=1
 let Tlist_WinWidth=40
 let Tlist_Exit_OnlyWindow=1
+" if use tags
+" let tags+=xxxxxx/tags,xxxx/tags
 colorscheme molokai
 " highlight CursorLine   cterm=underline ctermbg=black ctermfg=blue guibg=NONE guifg=NONE 
 " highlight CursorColumn cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
