@@ -14,6 +14,8 @@ set shiftwidth=4
 set tabstop=4
 set expandtab
 set wildmenu
+set hlsearch
+set incsearch
 set pastetoggle=<F9>
 set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
