@@ -7,6 +7,7 @@ set nu
 autocmd FileType python setlocal textwidth=120 formatoptions+=t
 set wrap
 set cuc
+set backspace=start,eol,indent
 set cul
 set relativenumber
 set cindent
@@ -25,13 +26,29 @@ let Tlist_WinWidth=40
 let Tlist_Exit_OnlyWindow=1
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<M-b>'
-colorscheme molokai
+" colorscheme molokai
 " highlight CursorLine   cterm=underline ctermbg=black ctermfg=blue guibg=NONE guifg=NONE 
 " highlight CursorColumn cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 highlight CursorLine   cterm=underline ctermbg=NONE ctermfg=blue guibg=NONE guifg=NONE 
 highlight CursorColumn cterm=NONE ctermbg=DarkYellow ctermfg=NONE guibg=NONE guifg=NONE
 "hi Normal ctermfg=252 ctermbg=none
 "
+
+" AIRLINE  ----------------------------------------------------------------{{{
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
+set laststatus=2
+let g:airline_theme='murmur'
+
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+let g:airline_left_alt_sep = '❯'
+let g:airline_right_alt_sep = '❮'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+" }}}
+
 " YCM  ----------------------------------------------------------------{{{
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 let g:ycm_server_python_interptreter='/usr/lib/python3.8'
@@ -55,6 +72,9 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-scripts/taglist.vim'
     Plug 'ycm-core/YouCompleteMe', { 'commit':'d2abd1594f228de79a05257fc5d4fca5c9a7ead3' }
     Plug 'jiangmiao/auto-pairs'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'ycm-core/YouCompleteMe'
 call plug#end()
 " }}}
 " MAPPINGS ---------------------------------------------------------------
@@ -81,6 +101,18 @@ call plug#end()
     nnoremap n nzz
     nnoremap N Nzz
     nnoremap <C-]> :YcmCompleter GoTo<CR>
+    nnoremap [b :bp<CR>
+    nnoremap ]b :bn<CR>
+    map <leader>1 :b 1<CR>
+    map <leader>2 :b 2<CR>
+    map <leader>3 :b 3<CR>
+    map <leader>4 :b 4<CR>
+    map <leader>5 :b 5<CR>
+    map <leader>6 :b 6<CR>
+    map <leader>7 :b 7<CR>
+    map <leader>8 :b 8<CR>
+    map <leader>9 :b 9<CR>
+
 " }}}
 " VIMSCRIPT --------------------------------------------------------------
 " {{{
