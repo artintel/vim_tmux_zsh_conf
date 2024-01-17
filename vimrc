@@ -23,8 +23,8 @@ set completeopt-=preview
 let Tlish_Show_One_File=1
 let Tlist_WinWidth=40
 let Tlist_Exit_OnlyWindow=1
-" if use tags
-" let tags+=xxxxxx/tags,xxxx/tags
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsShortcutBackInsert = '<M-b>'
 colorscheme molokai
 " highlight CursorLine   cterm=underline ctermbg=black ctermfg=blue guibg=NONE guifg=NONE 
 " highlight CursorColumn cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
@@ -54,6 +54,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'preservim/nerdtree'
 	Plug 'vim-scripts/taglist.vim'
     Plug 'ycm-core/YouCompleteMe', { 'commit':'d2abd1594f228de79a05257fc5d4fca5c9a7ead3' }
+    Plug 'jiangmiao/auto-pairs'
 call plug#end()
 " }}}
 " MAPPINGS ---------------------------------------------------------------
@@ -69,11 +70,11 @@ call plug#end()
 	nnoremap <S-h> :vertical resize -1<CR>
 	nnoremap <S-l> :vertical resize +1<CR>
     map <C-b> <C-a>
-    inoremap ( ()<ESC>i
-    inoremap [ []<ESC>i
-    inoremap { {}<ESC>i
-    inoremap < <><ESC>i
-    inoremap " ""<ESC>i
+    "inoremap ( ()<ESC>i
+    "inoremap [ []<ESC>i
+    "inoremap { {}<ESC>i
+    "inoremap < <><ESC>i
+    "inoremap " ""<ESC>i
     nnoremap vv <C-v>    
     nnoremap o o<ESC>
     nnoremap O O<ESC>
