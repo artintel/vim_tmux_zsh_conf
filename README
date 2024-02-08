@@ -46,7 +46,8 @@ YouCompleteMe 需要编译，因此你需要确保你的系统上安装了 CMake
 ### 自动生成 .ycm_extra_conf.py
 Plug 'rdnetto/YCM-Generator'
  ~/.vim/plugged/YCM-Generator/./config_gen.py <project_path> // need Makefile
-
+// 如果是python3 的版本，请把本项目路径下的 configure_gen.py 转移到 vim 下面
+// if python3: cp ./configure_gen.py ~/.vim/plugged/YCM-Generator/
 cd ~/.vim/plugged/YouCompleteMe
 python3 ./install.py
 --all 标志会安装所有语言的补全引擎。你可以根据需要选择性地安装特定语言的支持，例如：
