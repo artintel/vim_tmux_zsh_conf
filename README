@@ -14,8 +14,18 @@ apt install exuberant-ctags
 ————————————————
 装好ctags后，找一个 源码目录，在终端上运行如下命令，会生成一个tags文件。
 // 如果配置好了 YCM， 用YCM更好。
+// 后面发现 YCM+Ctags也更好用
+### install universal-ctags --> 为后面的 tagbar 插件做准备，tagbar用来查看代码行属于哪个函数
+`git clone https://github.com/universal-ctags/ctags.git`
+`cd ctags`
+`./autogen.sh`
+`./configure --prefix=/where/you/want/to/install`
+`make -j && make install`
+# suppose that you have install ctags to $HOME/tools/ctags
+`echo export PATH=$HOME/tools/ctags/bin:$PATH >> /etc/profile`
+`source ~/.zshrc`
 `ctags -R`
-`:set tags=/Your/Path/To/tags`/
+`:set tags+=/Your/Path/To/tags;/another path/`/
 [常用跳转方法：光标处Ctrl-]键：跳到光标所在单词的tag。Ctrl-T键：跳回原来的位置。g]键（先按g再按]）：如果有同名的多个tag，可以用这两个键进行跳转，会提示选择序号。]
 [系统函数挑战] shift+K
 [Tlist] 打开该文件下的函数列表，需要安装Plug
@@ -32,6 +42,9 @@ YouCompleteMe 需要编译，因此你需要确保你的系统上安装了 CMake
 5. 编译 YouCompleteMe
 在安装插件后，你需要编译 YCM。这通常涉及到编译 YCM 的核心以及它的语言补全引擎。在你的 Vim 插件目录中找到 YouCompleteMe 文件夹（例如 ~/.vim/plugged/YouCompleteMe），然后运行 install.py 脚本：
 
+### 自动生成 .ycm_extra_conf.py
+Plug 'rdnetto/YCM-Generator'
+ ~/.vim/plugged/YCM-Generator/./config_gen.py <project_path> // need Makefile
 
 cd ~/.vim/plugged/YouCompleteMe
 python3 ./install.py

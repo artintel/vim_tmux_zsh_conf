@@ -20,18 +20,23 @@ set incsearch
 set pastetoggle=<F9>
 set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+"set clipboard=unnamed
 set completeopt-=preview
 let Tlish_Show_One_File=1
 let Tlist_WinWidth=40
 let Tlist_Exit_OnlyWindow=1
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<M-b>'
-" colorscheme molokai
+let g:tagbar_left = 1
+colorscheme molokai
 " highlight CursorLine   cterm=underline ctermbg=black ctermfg=blue guibg=NONE guifg=NONE 
 " highlight CursorColumn cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 highlight CursorLine   cterm=underline ctermbg=NONE ctermfg=blue guibg=NONE guifg=NONE 
 highlight CursorColumn cterm=NONE ctermbg=DarkYellow ctermfg=NONE guibg=NONE guifg=NONE
-"hi Normal ctermfg=252 ctermbg=none
+set cuc
+set cul
+" set tags+=/<path>/tags;/<path2>/tags;
+hi Normal ctermfg=252 ctermbg=none
 "
 
 " AIRLINE  ----------------------------------------------------------------{{{
@@ -61,6 +66,8 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:ycm_clangd_uses_ycmd_caching = 0
 let g:ycm_clangd_binary_path=exepath("clangd")
+let g:ycm_confirm_extra_conf = 0
+" highlight YcmErrorLine ctermbg=red ctermfg=white guibg=#FF0000 guifg=#FFFFFF
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*gbar
@@ -71,10 +78,12 @@ call plug#begin('~/.vim/plugged')
 	Plug 'preservim/nerdtree'
 	Plug 'vim-scripts/taglist.vim'
     Plug 'ycm-core/YouCompleteMe', { 'commit':'d2abd1594f228de79a05257fc5d4fca5c9a7ead3' }
+    Plug 'rdnetto/YCM-Generator',
     Plug 'jiangmiao/auto-pairs'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'ycm-core/YouCompleteMe'
+    "Plug 'ycm-core/YouCompleteMe'
+    Plug  'preservim/tagbar'
 call plug#end()
 " }}}
 " MAPPINGS ---------------------------------------------------------------
@@ -89,20 +98,21 @@ call plug#end()
 	nnoremap <S-k> :resize +1<CR>
 	nnoremap <S-h> :vertical resize -1<CR>
 	nnoremap <S-l> :vertical resize +1<CR>
-    map <C-b> <C-a>
+    "map <C-b> <C-a>
     "inoremap ( ()<ESC>i
     "inoremap [ []<ESC>i
     "inoremap { {}<ESC>i
     "inoremap < <><ESC>i
     "inoremap " ""<ESC>i
-    nnoremap vv <C-v>    
+    nnoremap vv <C-v> 
     nnoremap o o<ESC>
     nnoremap O O<ESC>
     nnoremap n nzz
     nnoremap N Nzz
-    nnoremap <C-]> :YcmCompleter GoTo<CR>
+    nnoremap <C-\> :YcmCompleter GoTo<CR>
     nnoremap [b :bp<CR>
     nnoremap ]b :bn<CR>
+    nnoremap <C-k> :TagbarToggle<CR>
     map <leader>1 :b 1<CR>
     map <leader>2 :b 2<CR>
     map <leader>3 :b 3<CR>
