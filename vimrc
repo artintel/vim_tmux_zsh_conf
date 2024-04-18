@@ -33,6 +33,7 @@ colorscheme molokai
 " highlight CursorColumn cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 highlight CursorLine   cterm=underline ctermbg=NONE ctermfg=blue guibg=NONE guifg=NONE 
 highlight CursorColumn cterm=NONE ctermbg=DarkYellow ctermfg=NONE guibg=NONE guifg=NONE
+highlight Visual ctermbg=DarkBlue guibg=DarkBlue
 set cuc
 set cul
 " set tags+=/<path>/tags;/<path2>/tags;
@@ -83,11 +84,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     "Plug 'ycm-core/YouCompleteMe'
-    Plug  'preservim/tagbar'
+    Plug 'preservim/tagbar'
+    Plug 'chr4/nginx.vim'
 call plug#end()
 " }}}
-" MAPPINGS ---------------------------------------------------------------
-" {{{
+"
+" MAPPINGS ---------------------------------------------------------------{{{
 " C means ctrl
 	map <F2> :NERDTreeToggle<CR>
 	inoremap jj <ESC>
@@ -124,9 +126,9 @@ call plug#end()
     map <leader>9 :b 9<CR>
 
 " }}}
-" VIMSCRIPT --------------------------------------------------------------
-" {{{
-" This will enable code folding.
+"
+" VIMSCRIPT --------------------------------------------------------------{{{
+" This will enable code folding
 " Use the marker method of folding.
 augroup filetype_vim
     autocmd!
@@ -145,9 +147,12 @@ function! CleverTab()
     endif
 endfunction
 inoremap <Tab> <C-R>=CleverTab()<CR>
+autocmd filetype nerdtree set number
+autocmd filetype nerdtree set relativenumber
 
 " More Vimscripts code goes here.
 " }}}
+"
 " STATUS LINE    ------------------------------------------------------------ {{{
 " Clear status line when vimrc is reloaded.
 set statusline=

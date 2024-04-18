@@ -25,7 +25,7 @@ https://jdhao.github.io/2018/09/28/nvim_tagbar_install_use/
 # suppose that you have install ctags to $HOME/tools/ctags
 `echo export PATH=$HOME/tools/ctags/bin:$PATH >> /etc/profile`
 `source ~/.zshrc`
-`ctags -R`
+`ctags -R .`
 `:set tags+=/Your/Path/To/tags;/another path/`/
 [常用跳转方法：光标处Ctrl-]键：跳到光标所在单词的tag。Ctrl-T键：跳回原来的位置。g]键（先按g再按]）：如果有同名的多个tag，可以用这两个键进行跳转，会提示选择序号。]
 [系统函数挑战] shift+K
@@ -43,12 +43,6 @@ YouCompleteMe 需要编译，因此你需要确保你的系统上安装了 CMake
 5. 编译 YouCompleteMe
 在安装插件后，你需要编译 YCM。这通常涉及到编译 YCM 的核心以及它的语言补全引擎。在你的 Vim 插件目录中找到 YouCompleteMe 文件夹（例如 ~/.vim/plugged/YouCompleteMe），然后运行 install.py 脚本：
 
-### 自动生成 .ycm_extra_conf.py
-Plug 'rdnetto/YCM-Generator'
- ~/.vim/plugged/YCM-Generator/./config_gen.py <project_path> // need Makefile
-// 如果是python3 的版本，请把本项目路径下的 configure_gen.py 转移到 vim 下面
-// if python3: cp ./configure_gen.py ~/.vim/plugged/YCM-Generator/
-cd ~/.vim/plugged/YouCompleteMe
 python3 ./install.py
 --all 标志会安装所有语言的补全引擎。你可以根据需要选择性地安装特定语言的支持，例如：
 https://blog.csdn.net/liao20081228/article/details/80347889
@@ -56,6 +50,13 @@ https://clangd.llvm.org/installation.html#project-setup
 // vim插件ycm安装完成启动时出现The ycmd server SHUT DOWN (restart with ‘:YcmRestartServer‘)
 python3 ./install.py --force-sudo --clangd-completer # if use root
 cp ycm_extra_conf.py ~/.vim/.ycm_extra_conf.py # if use my repo
+
+### 自动生成 .ycm_extra_conf.py
+Plug 'rdnetto/YCM-Generator'
+ ~/.vim/plugged/YCM-Generator/./config_gen.py <project_path> // need Makefile
+// 如果是python3 的版本，请把本项目路径下的 configure_gen.py 转移到 vim 下面
+// if python3: cp ./configure_gen.py ~/.vim/plugged/YCM-Generator/
+cd ~/.vim/plugged/YouCompleteMe
 ## ~/.vimrc
 https://zhuanlan.zhihu.com/p/145793963
 https://www.freecodecamp.org/news/vimrc-configuration-guide-customize-your-vim-editor/
