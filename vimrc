@@ -114,7 +114,7 @@ call plug#end()
     nnoremap <C-\> :YcmCompleter GoTo<CR>
     nnoremap [b :bp<CR>
     nnoremap ]b :bn<CR>
-    nnoremap <C-k> :TagbarToggle<CR>
+    nnoremap <C-k> :call ToggleTagbarWithNumbers()<CR>
     map <leader>1 :b 1<CR>
     map <leader>2 :b 2<CR>
     map <leader>3 :b 3<CR>
@@ -149,6 +149,12 @@ endfunction
 inoremap <Tab> <C-R>=CleverTab()<CR>
 autocmd filetype nerdtree set number
 autocmd filetype nerdtree set relativenumber
+function! ToggleTagbarWithNumbers()
+    TagbarToggle
+        wincmd w
+        set number
+        set relativenumber
+endfunction
 
 " More Vimscripts code goes here.
 " }}}
