@@ -40,6 +40,58 @@ set cul
 hi Normal ctermfg=252 ctermbg=none
 "
 
+" Nerdcommended  ----------------------------------------------------------------{{{{{{}}}
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code
+" indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/'  }  }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
+
+" }}}
+
+" LEADERF  ----------------------------------------------------------------{{{{{{}}}
+let g:Lf_ShortcutF = '<leader>f'
+let g:Lf_WorkingDirectoryMode = 'AF'
+let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
+let g:Lf_PreviewInPopup = 1
+let g:Lf_WindowHeight = 0.15
+let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_PreviewResult = {
+        \ 'File': 0,
+        \ 'Buffer': 0,
+        \ 'Mru': 0,
+        \ 'Tag': 0,
+        \ 'BufTag': 1,
+        \ 'Function': 1,
+        \ 'Line': 1,
+        \ 'Colorscheme': 0,
+        \ 'Rg': 0,
+        \ 'Gtags': 0
+        \}
+" }}}
+
 " AIRLINE  ----------------------------------------------------------------{{{
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
@@ -68,6 +120,9 @@ let g:syntastic_warning_symbol = '⚠'
 let g:ycm_clangd_uses_ycmd_caching = 0
 let g:ycm_clangd_binary_path=exepath("clangd")
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_auto_trigger = 1
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 " highlight YcmErrorLine ctermbg=red ctermfg=white guibg=#FF0000 guifg=#FFFFFF
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -80,9 +135,11 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-scripts/taglist.vim'
     Plug 'ycm-core/YouCompleteMe', { 'commit':'d2abd1594f228de79a05257fc5d4fca5c9a7ead3' }
     Plug 'rdnetto/YCM-Generator',
+    Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension'  }
     Plug 'jiangmiao/auto-pairs'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    Plug 'preservim/nerdcommenter'
     "Plug 'ycm-core/YouCompleteMe'
     Plug 'preservim/tagbar'
     Plug 'chr4/nginx.vim'
@@ -139,14 +196,14 @@ augroup cursor_off
     autocmd WinLeave * set nocursorline nocursorcolumn
     autocmd WinEnter * set cursorline cursorcolumn
 augroup END
-function! CleverTab()
-    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-        return "\<Tab>"
-    else
-        return "\<C-N>"
-    endif
-endfunction
-inoremap <Tab> <C-R>=CleverTab()<CR>
+"function! CleverTab()
+"    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+"        return "\<Tab>"
+"    else
+"        return "\<C-N>"
+"    endif
+"endfunction
+"inoremap <Tab> <C-R>=CleverTab()<CR>
 autocmd filetype nerdtree set number
 autocmd filetype nerdtree set relativenumber
 function! ToggleTagbarWithNumbers()
@@ -155,6 +212,9 @@ function! ToggleTagbarWithNumbers()
         set number
         set relativenumber
 endfunction
+autocmd FileType c,cpp setlocal formatoptions-=cro
+
+autocmd BufNewFile,BufRead X:/yourdir* let g:Lf_WildIgnore={'file':['*.vcproj', '*.vcxproj'],'dir':[]}
 
 " More Vimscripts code goes here.
 " }}}
