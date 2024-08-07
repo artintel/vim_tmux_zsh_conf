@@ -241,3 +241,18 @@ zR：打开所有的折叠。
 zM：关闭所有的折叠。
 
 在你的情况下，你可以将光标移动到 if () {} 代码块的开始，然后按 zf% 来折叠整个代码块。% 是一个特殊的命令，它会移动到配对的括号或者大括号上。所以 zf% 的意思是从当前的位置到配对的括号创建一个折叠。
+
+# nvim
+https://codingpackets.com/blog/neovim-install-and-configure/
+nvim python issue:
+https://carakan.net/blog/2020/04/configuring-python3-on-neovim/
+
+总结：可以把 vim 的配置直接过度到nvim里.
+关键步骤：
+mkdir ~/.config/nvim
+然后把 ~/.vim/ 路径下的文件全拷贝到这个路径下，然后把 ~/.vimrc 拷贝到 ~/.config/nvim/init.vim
+也许会执行 :PlugUpgrade 等操作
+
+### neovide
+https://neovide.dev/installation.html
+

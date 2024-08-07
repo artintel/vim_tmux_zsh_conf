@@ -40,7 +40,11 @@ set cul
 hi Normal ctermfg=252 ctermbg=none
 "
 
-" Nerdcommended  ----------------------------------------------------------------{{{{{{}}}
+"if configured airline, but terminal do not show colors.
+"pls add env variable in ~/.bashrc or ~/.zshrc as follows
+"`export TERM=xterm-256color`
+
+" Nerdcommended  ----------------------------------------------------------------{{{
 " Create default mappings
 let g:NERDCreateDefaultMappings = 1
 
@@ -56,6 +60,7 @@ let g:NERDDefaultAlign = 'left'
 
 " Set a language to use its alternate delimiters by default
 let g:NERDAltDelims_java = 1
+let g:NERDAltDelims_c = 1
 
 " Add your own custom formats or override the defaults
 " let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/'  }  }
@@ -71,7 +76,7 @@ let g:NERDToggleCheckAllLines = 1
 
 " }}}
 
-" LEADERF  ----------------------------------------------------------------{{{{{{}}}
+" LEADERF  ----------------------------------------------------------------{{{
 let g:Lf_ShortcutF = '<leader>f'
 let g:Lf_WorkingDirectoryMode = 'AF'
 let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
