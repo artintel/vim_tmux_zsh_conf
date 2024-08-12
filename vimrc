@@ -59,7 +59,6 @@ let g:NERDCompactSexyComs = 1
 let g:NERDDefaultAlign = 'left'
 
 " Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
 let g:NERDAltDelims_c = 1
 
 " Add your own custom formats or override the defaults
@@ -77,12 +76,16 @@ let g:NERDToggleCheckAllLines = 1
 " }}}
 
 " LEADERF  ----------------------------------------------------------------{{{
+let g:Lf_HideHelp = 1
+let g:Lf_UseCache = 0
 let g:Lf_ShortcutF = '<leader>f'
 let g:Lf_WorkingDirectoryMode = 'AF'
 let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
 let g:Lf_PreviewInPopup = 1
 let g:Lf_WindowHeight = 0.15
 let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
 let g:Lf_PreviewResult = {
         \ 'File': 0,
         \ 'Buffer': 0,
@@ -95,13 +98,22 @@ let g:Lf_PreviewResult = {
         \ 'Rg': 0,
         \ 'Gtags': 0
         \}
+" search word under cursor in *.h and *.c and *.cpp files.
+noremap <Leader>a :<C-U><C-R>=printf("Leaderf! rg -e %s -g *.{h,hpp,cpp,c}",expand("<cword>"))<CR><CR>
+
+" search word under cursor in cpp files, exclude the *.h files
+noremap <Leader>c :<C-U><C-R>=printf("Leaderf! rg -e %s -g *.{cpp,c}",expand("<cword>"))<CR><CR>
+noremap go :<C-U>Leaderf! rg --recall<CR>
+nnoremap <silent> <leader>r :Leaderf rg --current-buffer<CR>
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR><CR>
 " }}}
 
 " AIRLINE  ----------------------------------------------------------------{{{
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 set laststatus=2
-let g:airline_theme='murmur'
+"let g:airline_theme='murmur'
+let g:airline_theme='papercolor'
 
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
@@ -158,8 +170,8 @@ call plug#end()
 	nnoremap <space> :
 	map <F4> :Tlist<CR>
 	nnoremap <F5> :!man <C-R>=expand("<cword>")<CR><CR>
-	nnoremap <S-down> :resize -1<CR>
-	nnoremap <S-up> :resize +1<CR>
+	nnoremap <S-up> :resize -1<CR>
+	nnoremap <S-down> :resize +1<CR>
 	nnoremap <S-left> :vertical resize -1<CR>
 	nnoremap <S-right> :vertical resize +1<CR>
     "map <C-b> <C-a>
@@ -168,7 +180,7 @@ call plug#end()
     "inoremap { {}<ESC>i
     "inoremap < <><ESC>i
     "inoremap " ""<ESC>i
-    nnoremap vv <C-v> 
+    "innoremap <leader>v <C-q> 
     nnoremap o o<ESC>
     nnoremap O O<ESC>
     nnoremap n nzz
@@ -186,6 +198,7 @@ call plug#end()
     map <leader>7 :b 7<CR>
     map <leader>8 :b 8<CR>
     map <leader>9 :b 9<CR>
+    nnoremap <silent> <leader>r :Leaderf rg --current-buffer<CR>
 
 " }}}
 "

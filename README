@@ -11,6 +11,9 @@
 ### vim 内函数跳转
 apt install ctags
 apt install exuberant-ctags
+### leaderf rg
+https://kimi.moonshot.cn/chat/cqq38khmqu0243lcd56g
+apt install ripgrep
 ————————————————
 装好ctags后，找一个 源码目录，在终端上运行如下命令，会生成一个tags文件。
 // 如果配置好了 YCM， 用YCM更好。
