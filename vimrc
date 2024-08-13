@@ -199,6 +199,9 @@ call plug#end()
     map <leader>8 :b 8<CR>
     map <leader>9 :b 9<CR>
     nnoremap <silent> <leader>r :Leaderf rg --current-buffer<CR>
+    " use for env without copilot
+    "inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+    "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " }}}
 "
@@ -214,14 +217,6 @@ augroup cursor_off
     autocmd WinLeave * set nocursorline nocursorcolumn
     autocmd WinEnter * set cursorline cursorcolumn
 augroup END
-"function! CleverTab()
-"    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-"        return "\<Tab>"
-"    else
-"        return "\<C-N>"
-"    endif
-"endfunction
-"inoremap <Tab> <C-R>=CleverTab()<CR>
 autocmd filetype nerdtree set number
 autocmd filetype nerdtree set relativenumber
 function! ToggleTagbarWithNumbers()
