@@ -158,6 +158,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline-themes'
     Plug 'preservim/nerdcommenter'
     "Plug 'ycm-core/YouCompleteMe'
+    Plug 'wakatime/vim-wakatime'
+    "https://wakatime.com/vim
     Plug 'preservim/tagbar'
     Plug 'chr4/nginx.vim'
 call plug#end()

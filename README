@@ -93,6 +93,9 @@ $ curl -o molokai.vim https://raw.githubusercontent.com/tomasr/molokai/master/co
 :source ~/.vimrc
 :PlugInstall
 ```
+# wakatime
+https://wakatime.com/@artintel
+ 
 
 ## 多行同时插入
 1. `ctrl + v`
