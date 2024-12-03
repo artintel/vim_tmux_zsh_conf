@@ -8,9 +8,6 @@
 输入：`set fileformat=unix`回车
 保存退出
 
-### vim 内函数跳转
-apt install ctags
-apt install exuberant-ctags
 ### leaderf rg
 https://kimi.moonshot.cn/chat/cqq38khmqu0243lcd56g
 apt install ripgrep
@@ -21,6 +18,7 @@ apt install ripgrep
 ### install universal-ctags --> 为后面的 tagbar 插件做准备，tagbar用来查看代码行属于哪个函数
 https://jdhao.github.io/2018/09/28/nvim_tagbar_install_use/
 `git clone https://github.com/universal-ctags/ctags.git`
+apt install autoconf pkg-config
 `cd ctags`
 `./autogen.sh`
 `./configure --prefix=/where/you/want/to/install`
@@ -39,6 +37,7 @@ https://jdhao.github.io/2018/09/28/nvim_tagbar_install_use/
 
 Plug 'ycm-core/YouCompleteMe'
 然后在 Vim 中运行 :PlugInstall 来安装插件。
+如果用的cmake，可以加入-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
 4. 安装 YouCompleteMe 的依赖项
 YouCompleteMe 需要编译，因此你需要确保你的系统上安装了 CMake 和 Python。对于某些语言的支持，你可能还需要安装额外的依赖项，如 Go、Node.js、Java 等。
