@@ -41,6 +41,10 @@ Plug 'ycm-core/YouCompleteMe'
 
 4. 安装 YouCompleteMe 的依赖项
 YouCompleteMe 需要编译，因此你需要确保你的系统上安装了 CMake 和 Python。对于某些语言的支持，你可能还需要安装额外的依赖项，如 Go、Node.js、Java 等。
+apt install python3.10-dev build-essential golang-go npm
+mkdir /home/mayichao/go
+echo "export GOPATH=/home/mayichao/go" >> /etc/profile
+echo "export PATH=$PATH:$GOPATH/bin" >> /etc/profile
 
 5. 编译 YouCompleteMe
 在安装插件后，你需要编译 YCM。这通常涉及到编译 YCM 的核心以及它的语言补全引擎。在你的 Vim 插件目录中找到 YouCompleteMe 文件夹（例如 ~/.vim/plugged/YouCompleteMe），然后运行 install.py 脚本：
