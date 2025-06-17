@@ -125,14 +125,16 @@ let g:airline_symbols.branch = '⎇'
 " }}}
 
 " YCM  ----------------------------------------------------------------{{{
-let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
-let g:ycm_server_python_interptreter='/usr/lib/python3.8'
+" let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+let g:ycm_server_python_interptreter='/usr/lib/python3.10'
 " Syntastic
 let g:syntastic_c_checkers=['make']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol = '✗'
+let g:ycm_enable_semantic_highlighting=1
+let g:ycm_enable_inlay_hints = 1
 let g:syntastic_warning_symbol = '⚠'
 let g:ycm_clangd_uses_ycmd_caching = 0
 let g:ycm_clangd_binary_path=exepath("clangd")
@@ -150,15 +152,15 @@ set statusline+=%*gbar
 call plug#begin('~/.vim/plugged')
 	Plug 'preservim/nerdtree'
 	Plug 'vim-scripts/taglist.vim'
-    Plug 'ycm-core/YouCompleteMe', { 'commit':'d2abd1594f228de79a05257fc5d4fca5c9a7ead3' }
+    "Plug 'ycm-core/YouCompleteMe', { 'commit':'d2abd1594f228de79a05257fc5d4fca5c9a7ead3' }
     Plug 'rdnetto/YCM-Generator',
     Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension'  }
     Plug 'jiangmiao/auto-pairs'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'preservim/nerdcommenter'
-    "Plug 'ycm-core/YouCompleteMe'
-    Plug 'wakatime/vim-wakatime'
+    Plug 'ycm-core/YouCompleteMe'
+    "Plug 'wakatime/vim-wakatime'
     "https://wakatime.com/vim
     Plug 'preservim/tagbar'
     Plug 'chr4/nginx.vim'
